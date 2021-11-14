@@ -57,10 +57,11 @@
 
     <div class="container">
       <section>
-        <h2>Development Progress</h2>
+        <h2>Source Code, Development Progress and downloads</h2>
         <p>Development hasn’t started yet :/</p>
 
-        <h2>Evaluation</h2>
+        <h2>Technical Explanations</h2>
+        <h3>Evaluation</h3>
         <p>The engine will use a neural network based evaluation. The evaluation process goes as follows:
           <ul>
             <li>pass each timeline through a <abbr title="Long Short Term Memory">LSTM</abbr></li>
@@ -69,7 +70,7 @@
           </ul>
           </p>
 
-        <h2>Search</h2>
+        <h3>Search</h3>
         <p>The engine will have 2 search modes: normal search and mate search.</p>
         <p>In normal search, the engine will use minimax with alpha-beta pruning, move ordering and mate distance pruning, as well as staged move generation. It will for example generate easy softmate scenarios first, and so if any of them are checkmate or above beta, it will instantly cut off.<br>
         Note that 5D chess has a very high branching factor that grows exponentially with the number of timelines, and so speed and selectivity are key here.<br>
@@ -83,8 +84,8 @@
         </ul>
       </p>
 
-        <h2>Model Training</h2>
-        <p>Things about training the nn go here</p>
+        <h3>Model Training</h3>
+        <p>Things about training the nn go here, when it will actually be trained</p>
       </section>
     </div>
   </body>
