@@ -65,12 +65,23 @@
           <ul>
             <li>pass each timeline through a <abbr title="Long Short Term Memory">LSTM</abbr></li>
             <li>combine the results and the final board's position, creating three tensors: minimum, maximum and average</li>
-            <li>use a <abbr title="Feedforward Neural Network">FNN</abbr></li>
+            <li>use a <abbr title="Feedforward Neural Network">FNN</abbr> to compute 3 values: the probability of a win, a draw and a loss</li>
           </ul>
           </p>
 
         <h2>Search</h2>
-        <p>Things about search go here</p>
+        <p>The engine will have 2 search modes: normal search and mate search.</p>
+        <p>In normal search, the engine will use minimax with alpha-beta pruning, move ordering and mate distance pruning, as well as staged move generation. It will for example generate easy softmate scenarios first, and so if any of them are checkmate or above beta, it will instantly cut off.<br>
+        Note that 5D chess has a very high branching factor that grows exponentially with the number of timelines, and so speed and selectivity are key here.<br>
+        This is why the old evaluations will be conserved: the advantage of using LSTMs is that whenever you make a move, the LSTM doesn't need to be recomputed entirely, but just for that last board, and when you take back that move, you can just go back to the older results.</p>
+        <p>In mate-only search, the engine will use minimax with the same backward pruning as the normal search, but with the addition of proof-number search, to speed up the checkmate search even further. This algorithm will also be selective if you enable the selectivity flag, so even if you are searching with a depth N, maybe some moves won't get seen.</p>
+
+      <p>The checkmate detection algorithms will be the following for both searches, except if better ones are found:
+        <ul>
+          <li>Shad's optimized search for fewer than 4 timelines</li>
+          <li>tesseract's hypercuboid algorithm for 4 or more timelines</li>
+        </ul>
+      </p>
 
         <h2>Model Training</h2>
         <p>Things about training the nn go here</p>
